@@ -1,0 +1,16 @@
+{
+  "data": {
+    "attributes": {
+      "name": "${VCS_WORKSPACE_NAME}",
+      "terraform_version": "${TF_VERSION}",
+      "working-directory": "${WORKING_DIRECTORY}",
+      "vcs-repo": {
+        "identifier": "${VCS_REPO}",
+        "oauth-token-id": "${VCS_OAUTH_TOKEN_ID}",
+        "branch": "${VCS_BRANCH}",
+        "default-branch": true
+      }
+    },
+    "type": "workspaces"
+  }
+}
