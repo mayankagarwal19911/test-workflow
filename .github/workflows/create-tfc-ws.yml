@@ -1,0 +1,34 @@
+name: 'Terraform'
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+env: 
+  VCS_WORKSPACE_NAME: "github-workflow"
+  TF_VERSION: "0.14.3"
+  WORKING_DIRECTORY: ""
+  VCS_REPO: "mayankagarwal19911/test-workflow"
+  VCS_BRANCH: "main"
+  TFE_ADDR: "https://app.terraform.io"
+  TFE_ORG: "test-cicd"
+
+permissions:
+  contents: read
+
+jobs:
+  terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+    environment: development
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      run: "curl -s --header "Authorization: Bearer ${{ secrets.TFE_ORG_TOKEN }}" --header "Content-Type: application/vnd.api+json" --request POST --data @payload-2.json ${TFE_ADDR}/api/v2/organizations/${TFE_ORG}/workspaces | jq -r ."
