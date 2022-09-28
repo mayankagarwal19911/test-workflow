@@ -31,4 +31,4 @@ jobs:
     steps:
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
-      run: "curl -s --header "Authorization: Bearer ${{ secrets.TFE_ORG_TOKEN }}" --header "Content-Type: application/vnd.api+json" --request POST --data @payload-2.json ${TFE_ADDR}/api/v2/organizations/${TFE_ORG}/workspaces | jq -r ."
+      run: '"curl -s --header "Authorization: Bearer ${{ secrets.TFE_ORG_TOKEN }}" --header "Content-Type: application/vnd.api+json" --request POST --data @payload-2.json ${TFE_ADDR}/api/v2/organizations/${TFE_ORG}/workspaces | jq -r ."'
