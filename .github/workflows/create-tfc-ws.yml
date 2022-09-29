@@ -38,11 +38,6 @@ jobs:
 
     # Checkout the repository to the GitHub Actions runner
     - name: create namespace
-      run: | 
-          curl -s \
-          --header "Authorization:Bearer ${{ secrets.TFE_ORG_TOKEN }}" \
-          --header "Content-Type:application/vnd.api+json" \
-          --header "Accept:application/vnd.github.v3+json"
-          --request POST \
-          --data @payload.json \
-          https://app.terraform.io/api/v2/organizations/test-cicd/workspaces
+      run: |
+          curl -X POST -H "Accept:application/vnd.github+json" -H "Authorization:Bearer ${{ secrets.TFE_ORG_TOKEN }}" -H "Content-Type:application/vnd.api+json" --data @payload-2.json ${TFE_ADDR}/api/v2/organizations/${TFE_ORG}/workspaces
+    
