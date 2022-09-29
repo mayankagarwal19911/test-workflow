@@ -21,19 +21,22 @@ jobs:
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
-    environment: development
+    environment: development 
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
       run:
         shell: bash
-
+  
     steps:
+
+    - name: update apt
+      run: sudo apt update && sudo apt upgrade
+      
+    - name: install curl
+      run: sudo apt install curl
+
     # Checkout the repository to the GitHub Actions runner
     - name: create namespace
-      uses: wei/curl@v1
-      with:
-        args: POST -H "Accept:application/vnd.github+json" -H "Authorization:Bearer ${{ secrets.TFE_ORG_TOKEN }}" ${TFE_ADDR}/api/v2/organizations/${TFE_ORG}/workspaces
-        # --header "Authorization:Bearer ${{ secrets.TFE_ORG_TOKEN }}" --header "Content-Type:application/vnd.api+json" --request POST --data @payload-2.json ${TFE_ADDR}/api/v2/organizations/${TFE_ORG}/workspaces
-        #  run: sh 'curl PUT -H "Accept:application/vnd.github+json" https://api.github.com/repos/mayankagarwal19911/test-workflow/actions/workflows'
-        # 'curl -s --header "Authorization:Bearer ${{ secrets.TFE_ORG_TOKEN }}" --header "Content-Type: application/vnd.api+json" --request POST --data @payload-2.json ${TFE_ADDR}/api/v2/organizations/${TFE_ORG}/workspaces | jq -r .'
+      run: | 
+        curl -X POST -H "Accept:application/vnd.github+json" -H "Authorization:Bearer ${{ secrets.TFE_ORG_TOKEN }}"  --data @payload-2.json ${TFE_ADDR}/api/v2/organizations/${TFE_ORG}/workspaces
