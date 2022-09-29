@@ -29,16 +29,11 @@ jobs:
         shell: bash
 
     steps:
-    - name: update apt
-      run: sudo apt update && sudo apt upgrade
-      
-    - name: install curl
-      run: sudo apt install curl
-
     # Checkout the repository to the GitHub Actions runner
     - name: create namespace
       uses: wei/curl@v1
       with:
-        args: --header "Authorization:Bearer ${{ secrets.TFE_ORG_TOKEN }}" --header "Content-Type:application/vnd.api+json" --request POST --data @payload-2.json ${TFE_ADDR}/api/v2/organizations/${TFE_ORG}/workspaces
+        args: PUT -H "Accept:application/vnd.github+json" https://api.github.com/repos/mayankagarwal19911/test-workflow/actions/workflows
+        # --header "Authorization:Bearer ${{ secrets.TFE_ORG_TOKEN }}" --header "Content-Type:application/vnd.api+json" --request POST --data @payload-2.json ${TFE_ADDR}/api/v2/organizations/${TFE_ORG}/workspaces
         #  run: sh 'curl PUT -H "Accept:application/vnd.github+json" https://api.github.com/repos/mayankagarwal19911/test-workflow/actions/workflows'
         # 'curl -s --header "Authorization: Bearer ${{ secrets.TFE_ORG_TOKEN }}" --header "Content-Type: application/vnd.api+json" --request POST --data @payload-2.json ${TFE_ADDR}/api/v2/organizations/${TFE_ORG}/workspaces | jq -r .'
