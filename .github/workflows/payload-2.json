@@ -1,0 +1,9 @@
+{
+  "data": {
+    "attributes": {
+      "name": "to-delete-ws-2",
+      "auto-apply": true
+    },
+    "type": "workspaces"
+  }
+}
