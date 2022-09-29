@@ -45,4 +45,4 @@ jobs:
             -H "Authorization:Bearer ${{ secrets.TFE_ORG_TOKEN }}" \
             -H "Content-Type:application/vnd.api+json" \
             ${TFE_ADDR}/api/v2/organizations/${TFE_ORG}/workspaces \
-            -d '{"data":{"attributes":{"name":"to-delete-ws-from-gh-actions","auto-apply":true},"type":"workspaces"}}'
+            -d '{"data":{"attributes":{"name":"to-delete-ws-from-gh-actions-01","auto-apply":true},"type":"workspaces"}}'
