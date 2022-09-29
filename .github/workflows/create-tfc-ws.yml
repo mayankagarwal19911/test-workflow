@@ -39,4 +39,4 @@ jobs:
     # Checkout the repository to the GitHub Actions runner
     - name: create namespace
       run: | 
-        curl -X POST -H "Accept:application/vnd.github+json" -H "Authorization:Bearer ${{ secrets.TFE_ORG_TOKEN }}" -H "Content-Type:application/vnd.api+json" --data @payload-2.json ${TFE_ADDR}/api/v2/organizations/${TFE_ORG}/workspaces
+        curl -X POST -H "Accept:application/vnd.github+json" -H "Authorization:Bearer ${{ secrets.TFE_ORG_TOKEN }}" -H "Content-Type:application/vnd.api+json" --data @payload-2.json ${TFE_ADDR}/api/v2/organizations/to-delete-ws-3/workspaces
