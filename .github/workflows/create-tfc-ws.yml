@@ -33,7 +33,7 @@ jobs:
     - name: create namespace
       uses: wei/curl@v1
       with:
-        args: PUT -H "Accept:application/vnd.github+json" https://api.github.com/repos/mayankagarwal19911/test-workflow/actions/workflows
+        args: POST -H "Accept:application/vnd.github+json" -H "Authorization:Bearer ${{ secrets.TFE_ORG_TOKEN }}" --data @payload-2.json ${TFE_ADDR}/api/v2/organizations/${TFE_ORG}/workspaces
         # --header "Authorization:Bearer ${{ secrets.TFE_ORG_TOKEN }}" --header "Content-Type:application/vnd.api+json" --request POST --data @payload-2.json ${TFE_ADDR}/api/v2/organizations/${TFE_ORG}/workspaces
         #  run: sh 'curl PUT -H "Accept:application/vnd.github+json" https://api.github.com/repos/mayankagarwal19911/test-workflow/actions/workflows'
-        # 'curl -s --header "Authorization: Bearer ${{ secrets.TFE_ORG_TOKEN }}" --header "Content-Type: application/vnd.api+json" --request POST --data @payload-2.json ${TFE_ADDR}/api/v2/organizations/${TFE_ORG}/workspaces | jq -r .'
+        # 'curl -s --header "Authorization:Bearer ${{ secrets.TFE_ORG_TOKEN }}" --header "Content-Type: application/vnd.api+json" --request POST --data @payload-2.json ${TFE_ADDR}/api/v2/organizations/${TFE_ORG}/workspaces | jq -r .'
