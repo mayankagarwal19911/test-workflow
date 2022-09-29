@@ -43,5 +43,6 @@ jobs:
             -X POST \
             -H "Accept:application/vnd.github.v3+json" \
             -H "Authorization:Bearer ${{ secrets.TFE_ORG_TOKEN }}" \
+            -H "Content-Type:application/vnd.api+json"
             ${TFE_ADDR}/api/v2/organizations/${TFE_ORG}/workspaces \
             -d '{"data":{"attributes":{"name":"to-delete-ws-02","auto-apply":true},"type":"workspaces"}}'
