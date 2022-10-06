@@ -46,4 +46,3 @@ jobs:
             -H "Content-Type:application/vnd.api+json" \
             ${TFE_ADDR}/api/v2/organizations/${TFE_ORG}/workspaces \
             -d '{"data":{"attributes":{"name":"to-delete-ws-from-gh-actions-01","auto-apply":true},"type":"workspaces"}}'
-Update create-tfc-ws.yml ·
