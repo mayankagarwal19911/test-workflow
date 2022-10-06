@@ -1,13 +1,25 @@
+name: TestYamlGenerator
+on:
+  push:
+    branches:
+    - main
+  pull_request: 
 env:
+  VCS_WORKSPACE_NAME: github-workflow
+  TF_VERSION: 0.14.3
+  WORKING_DIRECTORY: 
+  VCS_REPO: mayankagarwal19911/test-workflow
+  VCS_BRANCH: main
   TFE_ADDR: https://app.terraform.io
   TFE_ORG: test-cicd
-  TF_VERSION: 0.14.3
-  VCS_BRANCH: main
-  VCS_REPO: mayankagarwal19911/test-workflow
-  VCS_WORKSPACE_NAME: github-workflow
-  WORKING_DIRECTORY: ''
+permissions:
+  contents: read
 jobs:
-- defaults:
+- terraform:
+    name: Terraform
+    runs-on: ubuntu-latest
+    environment: development
+  defaults:
     run:
       shell: bash
   steps:
@@ -16,15 +28,3 @@ jobs:
   - name: install curl
     run: sudo apt install curl
   - name: create namespace
-  terraform:
-    environment: development
-    name: Terraform
-    runs-on: ubuntu-latest
-name: TestYamlGenerator
-'on':
-  pull_request: ''
-  push:
-    branches:
-    - main
-permissions:
-  contents: read
