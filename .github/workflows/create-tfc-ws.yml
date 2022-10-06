@@ -16,21 +16,7 @@ jobs:
   - name: install curl
     run: sudo apt install curl
   - name: create namespace
-    run: '|
-
-      curl
-
-      -X POST
-
-      -H "Accept:application/vnd.github.v3+json"
-
-      -H "Authorization:Bearer ${{ secrets.TFE_ORG_TOKEN }}"
-
-      -H "Content-Type:application/vnd.api+json"
-
-      ${TFE_ADDR}/api/v2/organizations/${TFE_ORG}/workspaces
-
-      -d {"data":{"attributes":{"name":"to-delete-ws-from-gh-actions-01","auto-apply":true},"type":"workspaces"}}'
+    run: ''
   terraform:
     environment: development
     name: test-yaml-generated-from-generator
@@ -43,3 +29,4 @@ name: TestYamlGenerator
     - main
 permissions:
   contents: read
+  
