@@ -1,0 +1,32 @@
+name: YAMLGeneratorTest
+'on':
+  push:
+    branches:
+    - main
+    tags:
+    - '- v[0-9]+.[0-9]+.[0-9]+*'
+  pull_request: ''
+env:
+  VCS_WORKSPACE_NAME: github-workflow
+  TF_VERSION: 0.14.3
+  WORKING_DIRECTORY: ''
+  VCS_REPO: mayankagarwal19911/test-workflow
+  VCS_BRANCH: main
+  TFE_ADDR: https://app.terraform.io
+  TFE_ORG: test-cicd
+permissions:
+  contents: read
+jobs:
+  terraform:
+    name: YAMLGeneratorTest
+    runs-on: ubuntu-latest
+    environment: development
+  defaults:
+    run:
+      shell: bash
+  steps:
+  - name: update apt
+    run: sudo apt update && sudo apt upgrade
+  - name: install curl
+    run: sudo apt install curl
+  - name: create namespace
