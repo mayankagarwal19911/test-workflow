@@ -1,28 +1,29 @@
-env:
-  TFE_ADDR: https://app.terraform.io
-  TFE_ORG: test-cicd
-  TF_VERSION: 0.14.3
-  VCS_BRANCH: main
-  VCS_REPO: mayankagarwal19911/test-workflow
-  VCS_WORKSPACE_NAME: github-workflow
-  WORKING_DIRECTORY: ''
-jobs:
-  terraform:
-    defaults:
-      run:
-        shell: bash
-    environment: development
-    name: Terraform
-    runs-on: ubuntu-latest
-    steps:
-    - name: update apt
-      run: sudo apt update && sudo apt upgrade
-    - name: install curl
-      run: sudo apt install curl
 name: Terraform
 'on':
   push:
     branches:
     - main
+env:
+  VCS_WORKSPACE_NAME: github-workflow
+  TF_VERSION: 0.14.3
+  WORKING_DIRECTORY: ''
+  VCS_REPO: mayankagarwal19911/test-workflow
+  VCS_BRANCH: main
+  TFE_ADDR: https://app.terraform.io
+  TFE_ORG: test-cicd
+  namespace: test
 permissions:
   contents: read
+jobs:
+  terraform:
+    name: Terraform
+    runs-on: ubuntu-latest
+    environment: development
+    defaults:
+      run:
+        shell: bash
+    steps:
+    - name: update apt
+      run: sudo apt update && sudo apt upgrade
+    - name: install curl
+      run: sudo apt install curl
