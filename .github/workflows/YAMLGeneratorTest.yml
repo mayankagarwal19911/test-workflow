@@ -20,12 +20,10 @@ jobs:
     name: Terraform
     runs-on: ubuntu-latest
 name: Terraform
-'on':
-  pull_request: ''
+on:
   push:
-    branches:
-    - main
-    tags:
-    - '- v[0-9]+.[0-9]+.[0-9]+*'
+    branches: [ "main" ]
+  pull_request:
+
 permissions:
   contents: read
