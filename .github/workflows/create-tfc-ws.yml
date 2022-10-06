@@ -22,7 +22,7 @@ jobs:
     name: test-yaml-generated-from-generator
     runs-on: ubuntu-latest
 name: TestYamlGenerator
-'on':
+on:
   pull_request: ''
   push:
     branches:
