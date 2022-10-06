@@ -1,0 +1,30 @@
+env:
+  TFE_ADDR: https://app.terraform.io
+  TFE_ORG: test-cicd
+  TF_VERSION: 0.14.3
+  VCS_BRANCH: main
+  VCS_REPO: mayankagarwal19911/test-workflow
+  VCS_WORKSPACE_NAME: github-workflow
+  WORKING_DIRECTORY: ''
+jobs:
+- defaults:
+    run:
+      shell: bash
+  steps:
+  - name: update apt
+    run: sudo apt update && sudo apt upgrade
+  - name: install curl
+    run: sudo apt install curl
+  - name: create namespace
+  terraform:
+    environment: development
+    name: Terraform
+    runs-on: ubuntu-latest
+name: TestYamlGenerator
+'on':
+  pull_request: ''
+  push:
+    branches:
+    - main
+permissions:
+  contents: read
