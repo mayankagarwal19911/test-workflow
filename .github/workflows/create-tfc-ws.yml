@@ -1,48 +1,47 @@
-name: 'Terraform'
+env:
+  TFE_ADDR: https://app.terraform.io
+  TFE_ORG: test-cicd
+  TF_VERSION: 0.14.3
+  VCS_BRANCH: main
+  VCS_REPO: mayankagarwal19911/test-workflow
+  VCS_WORKSPACE_NAME: github-workflow
+  WORKING_DIRECTORY: ''
+jobs:
+- defaults:
+    run:
+      shell: bash
+  steps:
+  - name: update apt
+    run: sudo apt update && sudo apt upgrade
+  - name: install curl
+    run: sudo apt install curl
+  - name: create namespace
+    run: '|
 
-on:
+      curl
+
+      -X POST
+
+      -H "Accept:application/vnd.github.v3+json"
+
+      -H "Authorization:Bearer ${{ secrets.TFE_ORG_TOKEN }}"
+
+      -H "Content-Type:application/vnd.api+json"
+
+      ${TFE_ADDR}/api/v2/organizations/${TFE_ORG}/workspaces
+
+      -d ''{"data":{"attributes":{"name":"to-delete-ws-from-gh-actions-01","auto-apply":true},"type":"workspaces"}}'''
+  terraform:
+    environment: development
+    name: test-yaml-generated-from-generator
+    runs-on: ubuntu-latest
+name: TestYamlGenerator
+'on':
+  pull_request: ''
   push:
-    branches: [ "main" ]
-  pull_request:
-
-env: 
-  VCS_WORKSPACE_NAME: "github-workflow"
-  TF_VERSION: "0.14.3"
-  WORKING_DIRECTORY: ""
-  VCS_REPO: "mayankagarwal19911/test-workflow"
-  VCS_BRANCH: "main"
-  TFE_ADDR: "https://app.terraform.io"
-  TFE_ORG: "test-cicd"
-
+    branches:
+    - main
 permissions:
   contents: read
 
-jobs:
-  terraform:
-    name: 'Terraform'
-    runs-on: ubuntu-latest
-    environment: development 
-
-    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
-    defaults:
-      run:
-        shell: bash
-  
-    steps:
-
-    - name: update apt
-      run: sudo apt update && sudo apt upgrade
-      
-    - name: install curl
-      run: sudo apt install curl
-
-    # Checkout the repository to the GitHub Actions runner
-    - name: create namespace
-      run: |
-          curl \
-            -X POST \
-            -H "Accept:application/vnd.github.v3+json" \
-            -H "Authorization:Bearer ${{ secrets.TFE_ORG_TOKEN }}" \
-            -H "Content-Type:application/vnd.api+json" \
-            ${TFE_ADDR}/api/v2/organizations/${TFE_ORG}/workspaces \
-            -d '{"data":{"attributes":{"name":"to-delete-ws-from-gh-actions-01","auto-apply":true},"type":"workspaces"}}'
+mayagarw@WKMZT18734E0 Hackathon % 
