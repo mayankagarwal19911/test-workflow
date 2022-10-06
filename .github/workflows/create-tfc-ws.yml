@@ -16,17 +16,15 @@ jobs:
   - name: install curl
     run: sudo apt install curl
   - name: create namespace
-    run: ''
   terraform:
     environment: development
-    name: test-yaml-generated-from-generator
+    name: Terraform
     runs-on: ubuntu-latest
 name: TestYamlGenerator
-on:
+'on':
   pull_request: ''
   push:
     branches:
     - main
 permissions:
   contents: read
-  
