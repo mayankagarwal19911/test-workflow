@@ -3,7 +3,7 @@ name: Terraform
   push:
     branches:
     - main
-  pull_request: ''
+  pull_request: 
 env:
   VCS_WORKSPACE_NAME: github-workflow
   TF_VERSION: 0.14.3
