@@ -3,7 +3,7 @@ name: Terraform
   push:
     branches:
     - main
-  pull_request: 
+  pull_request: ''
 env:
   VCS_WORKSPACE_NAME: github-workflow
   TF_VERSION: 0.14.3
@@ -19,11 +19,11 @@ jobs:
     name: Terraform
     runs-on: ubuntu-latest
     environment: development
-  defaults:
-    run:
-      shell: bash
-  steps:
-  - name: update apt
-    run: sudo apt update && sudo apt upgrade
-  - name: install curl
-    run: sudo apt install curl
+    defaults:
+      run:
+        shell: bash
+    steps:
+    - name: update apt
+      run: sudo apt update && sudo apt upgrade
+    - name: install curl
+      run: sudo apt install curl
