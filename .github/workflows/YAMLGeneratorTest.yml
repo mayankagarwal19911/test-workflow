@@ -11,8 +11,7 @@ env:
   VCS_REPO: mayankagarwal19911/test-workflow
   VCS_BRANCH: main
   TFE_ADDR: https://app.terraform.io
-  TFE_ORG: test-cicd"
-
+  TFE_ORG: test-cicd
 permissions:
   contents: read
 
@@ -21,16 +20,12 @@ jobs:
     name: 'Terraform'
     runs-on: ubuntu-latest
     environment: development 
-
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
       run:
         shell: bash
-  
     steps:
-
     - name: update apt
       run: sudo apt update && sudo apt upgrade
-      
     - name: install curl
       run: sudo apt install curl
