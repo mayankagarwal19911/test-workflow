@@ -1,7 +1,8 @@
-name: TestYamlGenerator
-on:
+name: Terraform
+'on':
   push:
-    branches:  [ "main" ]
+    branches:
+    - main
   pull_request: ''
 env:
   VCS_WORKSPACE_NAME: github-workflow
