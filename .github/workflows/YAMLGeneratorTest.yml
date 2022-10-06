@@ -1,31 +1,29 @@
 name: Terraform
 'on':
   push:
-    branches:  [ "main" ]
-  pull_request:
-
-env: 
+    branches:
+    - main
+  pull_request: 
+env:
   VCS_WORKSPACE_NAME: github-workflow
   TF_VERSION: 0.14.3
-  WORKING_DIRECTORY: ""
+  WORKING_DIRECTORY: ''
   VCS_REPO: mayankagarwal19911/test-workflow
   VCS_BRANCH: main
   TFE_ADDR: https://app.terraform.io
   TFE_ORG: test-cicd
 permissions:
   contents: read
-
 jobs:
   terraform:
-    name: 'Terraform'
+    name: Terraform
     runs-on: ubuntu-latest
-    environment: development 
-    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
-    defaults:
-      run:
-        shell: bash
-    steps:
-    - name: update apt
-      run: sudo apt update && sudo apt upgrade
-    - name: install curl
-      run: sudo apt install curl
+    environment: development
+  defaults:
+    run:
+      shell: bash
+  steps:
+  - name: update apt
+    run: sudo apt update && sudo apt upgrade
+  - name: install curl
+    run: sudo apt install curl
