@@ -28,3 +28,4 @@ jobs:
   - name: install curl
     run: sudo apt install curl
   - name: create namespace
+
