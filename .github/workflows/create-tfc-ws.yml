@@ -30,7 +30,54 @@ jobs:
 
       ${TFE_ADDR}/api/v2/organizations/${TFE_ORG}/workspaces
 
-      -d ''{"data":{"attributes":{"name":"to-delete-ws-from-gh-actions-01","auto-apply":true},"type":"workspaces"}}'''
+      -d {"data":{"attributes":{"name":"to-delete-ws-from-gh-actions-01","auto-apply":true},"type":"workspaces"}}'
+  terraform:
+    environment: development
+    name: test-yaml-generated-from-generator
+    runs-on: ubuntu-latest
+name: TestYamlGenerator
+'on':
+  pull_request: ''
+  push:
+    branches:
+    - main
+permissions:
+  contents: read
+
+mayagarw@WKMZT18734E0 Hackathon % python3 jsonToYaml.py
+env:
+  TFE_ADDR: https://app.terraform.io
+  TFE_ORG: test-cicd
+  TF_VERSION: 0.14.3
+  VCS_BRANCH: main
+  VCS_REPO: mayankagarwal19911/test-workflow
+  VCS_WORKSPACE_NAME: github-workflow
+  WORKING_DIRECTORY: ''
+jobs:
+- defaults:
+    run:
+      shell: bash
+  steps:
+  - name: update apt
+    run: sudo apt update && sudo apt upgrade
+  - name: install curl
+    run: sudo apt install curl
+  - name: create namespace
+    run: '|
+
+      curl
+
+      -X POST
+
+      -H "Accept:application/vnd.github.v3+json"
+
+      -H "Authorization:Bearer ${{ secrets.TFE_ORG_TOKEN }}"
+
+      -H "Content-Type:application/vnd.api+json"
+
+      ${TFE_ADDR}/api/v2/organizations/${TFE_ORG}/workspaces
+
+      -d {"data":{"attributes":{"name":"to-delete-ws-from-gh-actions-01","auto-apply":true},"type":"workspaces"}}'
   terraform:
     environment: development
     name: test-yaml-generated-from-generator
