@@ -1,25 +1,12 @@
-name: 'Terraform'
-
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-
 env:
-  VCS_WORKSPACE_NAME: github-workflow
-  TF_VERSION: 0.14.3
-  WORKING_DIRECTORY: ''
-  VCS_REPO: mayankagarwal19911/test-workflow
-  VCS_BRANCH: main
   TFE_ADDR: https://app.terraform.io
   TFE_ORG: test-cicd
-permissions:
-  contents: read
+  TF_VERSION: 0.14.3
+  VCS_BRANCH: main
+  VCS_REPO: mayankagarwal19911/test-workflow
+  VCS_WORKSPACE_NAME: github-workflow
+  WORKING_DIRECTORY: ''
 jobs:
-  terraform:
-    name: Terraform
-    runs-on: ubuntu-latest
-    environment: development
   defaults:
     run:
       shell: bash
@@ -29,4 +16,17 @@ jobs:
   - name: install curl
     run: sudo apt install curl
   - name: create namespace
-
+  terraform:
+    environment: development
+    name: Terraform
+    runs-on: ubuntu-latest
+name: Terraform
+'on':
+  pull_request: ''
+  push:
+    branches:
+    - main
+    tags:
+    - '- v[0-9]+.[0-9]+.[0-9]+*'
+permissions:
+  contents: read
