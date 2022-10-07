@@ -11,7 +11,7 @@ env:
   VCS_BRANCH: main
   TFE_ADDR: https://app.terraform.io
   TFE_ORG: test-cicd
-  namespace: test
+  namespace: Test1
 permissions:
   contents: read
 jobs:
